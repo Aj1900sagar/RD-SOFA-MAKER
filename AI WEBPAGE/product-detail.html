@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details – RD SOFA MAKER</title>
+  <meta name="description" content="View detailed specifications, images, and pricing of premium sofas from RD SOFA MAKER. Order via WhatsApp or add to cart.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🛋️</span>
+        <span class="logo-text">RD <span>SOFA</span> MAKER</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="booking.html">Book Now</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-cart">🛒<span class="cart-count" style="display:none">0</span></a>
+        <a href="tel:+919130844058" class="btn btn-primary btn-sm nav-cta">📞 Call Now</a>
+      </div>
+      <div class="mobile-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a><a href="products.html">🛋️ Products</a><a href="booking.html">📅 Book Now</a><a href="about.html">ℹ️ About Us</a><a href="contact.html">📞 Contact</a><a href="cart.html">🛒 Cart</a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 id="productPageTitle">Product Details</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="products.html">Products</a> / <span id="productBreadcrumb">Details</span></p>
+    </div>
+  </section>
+
+  <!-- Product Detail -->
+  <section class="section">
+    <div class="container">
+      <div class="product-detail" id="productDetailContent">
+        <!-- JS will render content here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="section section-grey">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">🛋️ You May Also Like</span>
+        <h2>Related Sofas</h2>
+      </div>
+      <div class="products-grid" id="relatedProducts"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">🛋️ RD <span>SOFA</span> MAKER</div>
+          <p>Premium custom sofa manufacturer in Kiwale.</p>
+        </div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="products.html">All Products</a><a href="booking.html">Book Custom Sofa</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
+        <div class="footer-col"><h4>Categories</h4><a href="products.html?category=L Shape Sofa">L Shape Sofa</a><a href="products.html?category=Recliner Sofa">Recliner Sofa</a><a href="products.html?category=Wooden Sofa">Wooden Sofa</a><a href="products.html?category=Fabric Sofa">Fabric Sofa</a><a href="products.html?category=Leather Sofa">Leather Sofa</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="tel:+919130844058">📞 91308 44058</a><a href="tel:+918840902715">📞 88409 02715</a><a href="https://wa.me/919130844058" target="_blank">💬 WhatsApp Chat</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 RD SOFA MAKER. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <a href="https://wa.me/919130844058" target="_blank" class="whatsapp-float">💬</a>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const product = getProductById(id);
+
+      if (!product) {
+        document.getElementById('productDetailContent').innerHTML = `
+          <div style="text-align:center; grid-column:1/-1; padding:60px 0;">
+            <div style="font-size:4rem;">😕</div>
+            <h2>Product Not Found</h2>
+            <p style="color:#888; margin:12px 0 24px;">The product you're looking for doesn't exist.</p>
+            <a href="products.html" class="btn btn-primary">Browse All Products</a>
+          </div>
+        `;
+        return;
+      }
+
+      document.title = `${product.name} – RD SOFA MAKER`;
+      document.getElementById('productPageTitle').textContent = product.name;
+      document.getElementById('productBreadcrumb').textContent = product.name;
+
+      const discount = product.originalPrice ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
+      
+      let specsHTML = '';
+      if (product.specs) {
+        specsHTML = Object.entries(product.specs).map(([key, value]) =>
+          `<tr><td>${key}</td><td>${value}</td></tr>`
+        ).join('');
+      }
+
+      let thumbnailsHTML = product.images.map((img, i) => 
+        `<img src="${img}" alt="${product.name}" class="${i === 0 ? 'active' : ''}" onclick="changeMainImage(this, '${img}')">`
+      ).join('');
+
+      document.getElementById('productDetailContent').innerHTML = `
+        <div class="product-gallery">
+          <div class="main-image">
+            <img src="${product.image}" alt="${product.name}" id="mainProductImage">
+          </div>
+          <div class="thumbnails">${thumbnailsHTML}</div>
+        </div>
+        <div class="product-info">
+          <span class="category-tag">${product.category}</span>
+          <h1>${product.name}</h1>
+          ${product.badge ? `<span style="display:inline-block;background:var(--primary);color:white;padding:4px 14px;border-radius:50px;font-size:0.78rem;font-weight:700;text-transform:uppercase;margin-bottom:12px;">${product.badge}</span>` : ''}
+          <div class="price">
+            ${formatPrice(product.price)}
+            ${product.originalPrice ? `<span class="original">${formatPrice(product.originalPrice)}</span>` : ''}
+            ${discount > 0 ? `<span style="background:#27ae60;color:white;padding:4px 12px;border-radius:50px;font-size:0.8rem;font-weight:700;margin-left:10px;">${discount}% OFF</span>` : ''}
+          </div>
+          <p class="description">${product.description}</p>
+          
+          <div class="product-specs">
+            <h3>📋 Specifications</h3>
+            <table>${specsHTML}</table>
+          </div>
+
+          <div class="quantity-selector">
+            <button onclick="changeDetailQty(-1)">−</button>
+            <input type="number" id="detailQty" value="1" min="1" readonly>
+            <button onclick="changeDetailQty(1)">+</button>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn btn-primary btn-lg" onclick="addToCartDetail('${product.id}')">🛒 Add to Cart</button>
+            <a href="checkout.html" class="btn btn-dark btn-lg" onclick="addToCartDetail('${product.id}')">⚡ Buy Now</a>
+            <button class="btn btn-whatsapp btn-lg" onclick="whatsappOrder('${product.id}')">💬 WhatsApp Order</button>
+          </div>
+
+          <div style="margin-top:16px; padding:16px; background:var(--light-grey); border-radius:12px;">
+            <div style="display:flex; gap:20px; flex-wrap:wrap; font-size:0.85rem; color:#555;">
+              <span>🚚 Free delivery on ₹30K+</span>
+              <span>🔄 Easy returns</span>
+              <span>🛡️ Warranty included</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Related products
+      const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
+      if (related.length > 0) {
+        document.getElementById('relatedProducts').innerHTML = related.map(p => createProductCard(p)).join('');
+      }
+
+      initScrollAnimations();
+    });
+
+    function changeMainImage(thumb, src) {
+      document.getElementById('mainProductImage').src = src;
+      document.querySelectorAll('.thumbnails img').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    function changeDetailQty(delta) {
+      const input = document.getElementById('detailQty');
+      input.value = Math.max(1, parseInt(input.value) + delta);
+    }
+
+    function addToCartDetail(productId) {
+      const qty = parseInt(document.getElementById('detailQty').value);
+      const product = getProductById(productId);
+      if (!product) return;
+
+      const cart = getCart();
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          category: product.category,
+          quantity: qty
+        });
+      }
+      saveCart(cart);
+      showToast(`${product.name} added to cart!`);
+    }
+  </script>
+</body>
+</html>

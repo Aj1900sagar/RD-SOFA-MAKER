@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – RD SOFA MAKER</title>
+  <meta name="description" content="Complete your sofa order. Cash on Delivery or Online Payment. RD SOFA MAKER, Kiwale.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">🛋️</span><span class="logo-text">RD <span>SOFA</span> MAKER</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="products.html">Products</a><a href="booking.html">Book Now</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-cart">🛒<span class="cart-count" style="display:none">0</span></a>
+      </div>
+      <div class="mobile-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a><a href="products.html">🛋️ Products</a><a href="booking.html">📅 Book Now</a><a href="about.html">ℹ️ About Us</a><a href="contact.html">📞 Contact</a><a href="cart.html">🛒 Cart</a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Checkout</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Cart</a> / Checkout</p>
+    </div>
+  </section>
+
+  <!-- Checkout Section -->
+  <section class="section">
+    <div class="container">
+      <div class="checkout-layout">
+        <!-- Form -->
+        <div>
+          <form id="checkoutForm">
+            <div class="checkout-form-section" style="margin-bottom:24px;">
+              <h3>📦 Delivery Information</h3>
+              <div class="form-group">
+                <label for="checkoutName">Full Name *</label>
+                <input type="text" id="checkoutName" placeholder="Your full name" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="checkoutPhone">Phone Number *</label>
+                  <input type="tel" id="checkoutPhone" placeholder="Your phone number" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkoutEmail">Email (Optional)</label>
+                  <input type="email" id="checkoutEmail" placeholder="Your email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="checkoutAddress">Delivery Address *</label>
+                <textarea id="checkoutAddress" placeholder="Full address with landmark" rows="3" required></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="checkoutCity">City *</label>
+                  <input type="text" id="checkoutCity" placeholder="City" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkoutPincode">Pincode *</label>
+                  <input type="text" id="checkoutPincode" placeholder="Pincode" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-form-section">
+              <h3>💳 Payment Method</h3>
+              <div class="payment-options">
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="cod">
+                  <div>
+                    <div class="payment-label">💵 Cash on Delivery</div>
+                    <div class="payment-desc">Pay when you receive your sofa</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="online">
+                  <div>
+                    <div class="payment-label">📱 Online Payment (UPI/Bank)</div>
+                    <div class="payment-desc">Pay via UPI, Net Banking, or Card</div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="whatsapp">
+                  <div>
+                    <div class="payment-label">💬 Order via WhatsApp</div>
+                    <div class="payment-desc">Confirm order and payment details on WhatsApp</div>
+                  </div>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">✅ Place Order</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="cart-summary" id="checkoutSummary"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo">🛋️ RD <span>SOFA</span> MAKER</div><p>Premium custom sofa manufacturer in Kiwale.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="products.html">All Products</a><a href="contact.html">Contact</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="tel:+919130844058">📞 91308 44058</a><a href="https://wa.me/919130844058" target="_blank">💬 WhatsApp</a></div>
+        <div class="footer-col"></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 RD SOFA MAKER. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <a href="https://wa.me/919130844058" target="_blank" class="whatsapp-float">💬</a>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

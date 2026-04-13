@@ -358,7 +358,7 @@ button, input, select, textarea {
 /* Keep bars white — !important ensures no other rule overrides this on mobile */
 .mobile-toggle span,
 .mobile-toggle.active span {
-  background: #ffffff !important;
+  background: ##eeeaea !important;
 }
 
 .mobile-toggle.active span:nth-child(1) {

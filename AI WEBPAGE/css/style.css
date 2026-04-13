@@ -215,6 +215,9 @@ button, input, select, textarea {
 /* ============================================
    NAVIGATION
    ============================================ */
+/* ============================================
+   NAVIGATION 
+   ============================================ */
 .navbar {
   position: fixed;
   top: 0;
@@ -334,33 +337,26 @@ button, input, select, textarea {
   justify-content: center;
 }
 
-.nav-cta {
-  display: none;
-}
-
+/* Mobile Toggle - Default Hidden */
 .mobile-toggle {
-  display: none;
+  display: none; /* Desktop par chhupa rahega */
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
   padding: 8px;
+  z-index: 1001;
 }
 
 .mobile-toggle span {
-  display: block;
+  display: block; /* Fix: 'red' ko 'block' kiya */
   width: 24px;
   height: 2px;
-  background: var(--white);
+  background: #ffffff !important; /* Force white color */
   border-radius: 2px;
   transition: var(--transition);
 }
 
-/* Keep bars white — !important ensures no other rule overrides this on mobile */
-.mobile-toggle span,
-.mobile-toggle.active span {
-  background: ##eeeaea !important;
-}
-
+/* Animation for Active Toggle (X shape) */
 .mobile-toggle.active span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -374,7 +370,24 @@ button, input, select, textarea {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Nav */
+/* ============================================
+   MOBILE RESPONSIVE STYLES (The Missing Part)
+   ============================================ */
+@media (max-width: 992px) {
+  .nav-links {
+    display: none; /* Desktop links hide karein */
+  }
+
+  .mobile-toggle {
+    display: flex; /* Mobile par toggle show karein */
+  }
+
+  .nav-cta {
+    display: none; /* Agar desktop button hai toh hide karein */
+  }
+}
+
+/* Mobile Nav Menu Drawer */
 .mobile-nav {
   display: none;
   position: fixed;
@@ -402,14 +415,9 @@ button, input, select, textarea {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.mobile-nav a:hover {
-  color: var(--primary);
-}
-
-.mobile-nav .mobile-cta {
-  margin-top: 16px;
-  display: flex;
-  gap: 12px;
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================
